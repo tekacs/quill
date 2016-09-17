@@ -2,7 +2,7 @@ package io.getquill.norm
 
 import io.getquill.ast._
 
-object ApplyIntermediateMap {
+object ApplyMap {
 
   private def isomorphic(e: Ast, c: Ast, alias: Ident) =
     BetaReduction(e, alias -> c) == c

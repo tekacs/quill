@@ -13,7 +13,7 @@ class Test(val a: String) extends Product {
 }
 
 class ImplicitQuerySpec extends Spec {
-
+  
   import iqContext._
 
   "allows querying a case class companion" in {

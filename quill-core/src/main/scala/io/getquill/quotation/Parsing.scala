@@ -242,11 +242,6 @@ trait Parsing extends EntityConfigParsing {
     case q"$pack.Ord.descNullsLast[$t]"     => DescNullsLast
   }
 
-  implicit val propertyAliasParser: Parser[PropertyAlias] = Parser[PropertyAlias] {
-    case q"(($x1) => $pack.Predef.ArrowAssoc[$t]($x2.$prop).$arrow[$v](${ alias: String }))" =>
-      PropertyAlias(prop.decodedName.toString, alias)
-  }
-
   val joinCallParser: Parser[(JoinType, Ast, Option[Ast])] = Parser[(JoinType, Ast, Option[Ast])] {
     case q"$a.join[$t, $u]($b)" if (is[CoreDsl#Query[Any]](a))      => (InnerJoin, astParser(a), Some(astParser(b)))
     case q"$a.leftJoin[$t, $u]($b)" if (is[CoreDsl#Query[Any]](a))  => (LeftJoin, astParser(a), Some(astParser(b)))
